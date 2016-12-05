@@ -22,21 +22,21 @@ class SoundPlayer {
   void playPop() {
     popPlayer.trigger();
   }
-  
-  void playBG(){
+
+  void playBG() {
     backgroundMusic.rewind();
     backgroundMusic.play();
   }
-  
-  void boomMonster(){
+
+  void boomMonster() {
     boomMonster.trigger();
   }
-  
-  void shootSnow(){
+
+  void shootSnow() {
     shootSnow.trigger();
   }
 
-  boolean isBGPlaying(){
+  boolean isBGPlaying() {
     return backgroundMusic.isPlaying();
   }
 }
