@@ -13,7 +13,6 @@ class SoundPlayer {
     backgroundMusic = minimplay.loadFile("bg.mp3", 1024);
     boomMonster = minimplay.loadSample("hitmarker.wav", 1024);
     shootSnow = minimplay.loadSample("shoot.wav", 1024);
-
   }
 
   void playExplosion() {
