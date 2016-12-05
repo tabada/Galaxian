@@ -10,7 +10,7 @@ class SoundPlayer {
     minimplay = new Minim(app); 
     boomPlayer = minimplay.loadSample("OOT_Arrow_Hit_Ice.wav", 1024); 
     popPlayer = minimplay.loadSample("pop.wav", 1024);
-    backgroundMusic = minimplay.loadFile("bgmusic.wav", 1024);
+    backgroundMusic = minimplay.loadFile("bg.mp3", 1024);
     boomMonster = minimplay.loadSample("hitmarker.wav", 1024);
     shootSnow = minimplay.loadSample("shoot.wav", 1024);
 
