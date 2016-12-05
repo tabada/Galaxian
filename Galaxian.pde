@@ -8,8 +8,8 @@ import sprites.maths.*;
 import sprites.*;
 
 // Game Configuration Variables
-int monsterCols = 3,
-    monsterRows = 2,
+int monsterCols = 10,
+    monsterRows = 5,
     mmStep = 1;
 long mmCounter = 0;
 
@@ -65,7 +65,9 @@ void buildSprites()
 
 Sprite buildShip() 
 {
-  Sprite ship = new Sprite(this, "ship.png", 50);
+  //Sprite ship = new Sprite(this, "ship.png", 50);
+  Sprite ship = new Sprite(this, "elf.png", 2, 1, 90);
+  ship.setFrameSequence(0, 1, 0.5);
   ship.setXY(width/2, height-30);
   ship.setVelXY(0.0f, 0);
   ship.setScale(.75);
@@ -152,15 +154,14 @@ void checkKeys()
 {
   if (focused) { // Is game window in focus?
     if (kbController.isLeft()) {
-    ship.setX(ship.getX()-shipSpeed);
+      ship.setX(ship.getX()-shipSpeed);
     }
     if (kbController.isRight()) {
-    ship.setX(ship.getX()+shipSpeed);
+      ship.setX(ship.getX()+shipSpeed);
     }
-    if (kbController.isSpace()) {
-    // fireRocket is implemented in Phase 2
-    fireRocket();
-  }
+    if (kbController.isSpace() && gameOverSprite.isDead()) {
+      fireRocket();
+    }
   }
 }
 
@@ -207,8 +208,12 @@ public void pre()
     flyingMonster = null;
   }
 
-  if (!soundPlayer.isBGPlaying()){
+  if (!soundPlayer.isBGPlaying()) {
     soundPlayer.playBG();
+  }
+
+  if (!gameOverSprite.isDead() && kbController.isSpace()) {
+    resetAll();
   }
 }
 
@@ -253,7 +258,6 @@ void explodeShip()
   soundPlayer.playExplosion();
   explosion.setPos(ship.getPos());
   explosion.setFrameSequence(0, 16, 0.1, 1);
-  ship.setDead(true);
 }
 
 void monsterHit(Sprite flyingMonster)
@@ -305,6 +309,17 @@ void moveMonsters()
   }
 }
 
+void resetAll()
+{
+  gameOverSprite.setDead(true);
+  ship.setDead(false);
+  ship.setXY(width/2, height-30);
+  difficulty = 21;
+  score = 0;
+  resetMonsters();
+  stopRocket();
+}
+
 void drawScore()  
 {
   font = loadFont("kristen.vlw");
@@ -316,6 +331,7 @@ void drawScore()
 
 void drawGameOver()  
 {
+  gameOverSprite.setScale(1.75);
   gameOverSprite.setXY(width/2, height/2);
   gameOverSprite.setDead(false);
 }
