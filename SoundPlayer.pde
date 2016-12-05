@@ -13,7 +13,6 @@ class SoundPlayer {
     backgroundMusic = minimplay.loadFile("bg.mp3", 1024);
     boomMonster = minimplay.loadSample("hitmarker.wav", 1024);
     shootSnow = minimplay.loadSample("shoot.wav", 1024);
-
   }
 
   void playExplosion() {
@@ -23,21 +22,21 @@ class SoundPlayer {
   void playPop() {
     popPlayer.trigger();
   }
-  
-  void playBG(){
+
+  void playBG() {
     backgroundMusic.rewind();
     backgroundMusic.play();
   }
-  
-  void boomMonster(){
+
+  void boomMonster() {
     boomMonster.trigger();
   }
-  
-  void shootSnow(){
+
+  void shootSnow() {
     shootSnow.trigger();
   }
 
-  boolean isBGPlaying(){
+  boolean isBGPlaying() {
     return backgroundMusic.isPlaying();
   }
 }
